@@ -3,6 +3,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from datetime import datetime
 from pytz import timezone
+import pytz
 
 
 driver = webdriver.Chrome()
@@ -49,14 +50,43 @@ month ={
 datetime_str = f'{relevant_dictionary["RaceDate"]}/{month[relevant_dictionary["Month"]]}/23 {relevant_dictionary["RaceTime"]}:00'
 
 race_datetime_object = datetime.strptime(datetime_str, '%d/%m/%y %H:%M:%S')
+race_timezone={
+    'Austria':'Etc/GMT+2',
+    'Bahrain': 'Asia/Bahrain',
+    'Saudi Arabia': 'Etc/GMT+3',
+    'Australia': 'Etc/GMT+3',
+    'Azerbaijan':'Etc/GMT+4',
+    'Italy':'Europe/Rome',
+    'Monaco':'Etc/GMT+2',
+    'Spain':'Etc/GMT+2',
+    'Canada':'America/Montreal',
+    'Great Britain':'Etc/GMT+1',
+    'Hungary':'Etc/GMT+2',
+    'Belgium':'Europe/Brussels',
+    'Netherlands':'Europe/Amsterdam',
+    'Singapore':'Asia/Singapore',
+    'Japan':'Etc/GMT+9',
+    'Qatar':'Etc/GMT+3',
+    'Mexico':'Etc/GMT-6',
+    'Brazil':'Etc/GMT-3',
+    'Abu Dhabi':'Etc/GMT+4',
+}
 
-now_utc = datetime.now(timezone('UTC'))
-print(now_utc)
+flag = 1
+if flag == 1:
+    race_timezone["United States"]='Etc/GMT-5'
+    flag = 2
+elif flag == 2:
+    race_timezone["United States"]='Etc/GMT-7'
 
-
-print(race_datetime_object.tzinfo)
-print(now_utc.tzinfo)
-#race_datetime_object = race_datetime_object
+source_time_zone = pytz.timezone(race_timezone[relevant_dictionary["Country"]])
+print(source_time_zone)
+print(race_datetime_object)
+race_datetime_adjusted = source_time_zone.localize(race_datetime_object)
+print(race_datetime_adjusted)
+target_time_zone = pytz.timezone('Etc/UTC')
+racetime_utc= race_datetime_adjusted.astimezone(target_time_zone)
+print(racetime_utc)
 while(True):
     pass
 
