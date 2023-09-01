@@ -1,93 +1,98 @@
-from django.shortcuts import render
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import json
+import os
 from datetime import datetime
-from pytz import timezone
-import pytz
 
-def retday():
-    driver = webdriver.Chrome()
-    driver.implicitly_wait(5)
-    driver.get('https://www.formula1.com/en/racing/2023.html')
-    l = element = driver.find_element(By.CLASS_NAME, "trustarc-agree-btn")
-    l.click()
-    upcoming_race =driver.find_element(By.CLASS_NAME, "hero-event")
-    #print(upcoming_race.text)
-    upcoming_race_split = upcoming_race.text.split()
+def time_format(input_string):
+    output_datetime= datetime.strptime(input_string, "%Y-%m-%dT%H:%M:%S")
+    return output_datetime.strftime("%B %d, %Y %H:%M:%S")
 
-    for idx, element in enumerate(upcoming_race_split):
-        #print(f"{element} has index{idx}\n")
-        if element == 'RACE':
-            race_time_index = idx +2
+month = {
+'01': 'JAN',
+'02': 'FEB',
+'03': 'MAR',
+'04': 'APR',
+'05': 'MAY',
+'06': 'JUN',
+'07': 'JUL',
+'08': 'AUG',
+'09': 'SEP',
+'10': 'OCT',
+'11': 'NOV',
+'12': 'DEC'
+}
+# Initialize the WebDriver (You might need to specify the path to your webdriver executable)
+driver = webdriver.Chrome()
+
+# Open a web page with an iframe
+driver.get("https://www.formula1.com/en/racing/2023.html")
+
+try:
+    # Wait for the iframe to appear (change the locator to match your specific iframe)
+    iframe = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.XPATH, "//iframe[@id='sp_message_iframe_834700']"))
+    )
     
+    # Switch to the iframe
+    driver.switch_to.frame(iframe)
+    
+    # Find and click the button inside the iframe (change the locator to match your button)
+    button = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.XPATH, "//button[@title='REJECT ALL']"))
+    )
+    button.click()
+    print('button clicked')
+    
+    # Optionally, switch back to the default content
+    driver.switch_to.default_content()
+    anchor = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.XPATH, "//div[@class='hero-event']//a"))
+    )
+    anchor.click()
+    print('anchor clicked')
+    wait = WebDriverWait(driver, 10)
+    h1_element = wait.until(EC.presence_of_element_located((By.XPATH, "//h1[contains(@class, 'race-location')]")))
+    time_table = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.XPATH, "//div[@class='f1-race-hub--timetable-listings']"))
+    )
 
+    
+    child_divs = time_table.find_elements(By.XPATH, "./div")
 
-    relevant_dictionary = {
-        'Country':upcoming_race_split[7],
-        'RaceDate':upcoming_race_split[5] [3:5],
-        'Month': upcoming_race_split[6] [4:7],
-        'RaceTime' : upcoming_race_split[race_time_index]
+# Iterate through the child div elements and get their attributes
+    month_num=child_divs[0].get_attribute("data-start-time")[5:7]
+    print(month_num)
+    print()
+    # You can retrieve more attributes as needed
+    data = {
+    "Race": time_format(child_divs[0].get_attribute("data-start-time")),
+    "Qualifying": time_format(child_divs[1].get_attribute("data-start-time")),
+    "Practice3": time_format(child_divs[2].get_attribute("data-start-time")),
+    "Practice2": time_format(child_divs[3].get_attribute("data-start-time")),
+    "Practice1": time_format(child_divs[4].get_attribute("data-start-time")),
+    "Country":h1_element.text,
+    "Month": month[month_num]
+    
     }
+    print(data)
 
-    month ={
-        'JAN':'01',
-        'FEB':'02',
-        'MAR':'03',
-        'APR':'04',
-        'MAY':'05',
-        'JUN':'06',
-        'JUL':'07',
-        'AUG':'08',
-        'SEP':'09',
-        'OCT':'10',
-        'NOV':'11',
-        'DEC':'12',
-    }
+# Specify the file path where you want to save the JSON data
+    file_directory = os.getcwd()+'/scrap/static/scrap/'
+    file_path = file_directory+'data.json'
+
+# Write the dictionary to a JSON file
+    with open(file_path, "w") as json_file:
+        json.dump(data, json_file)
 
 
-    datetime_str = f'{relevant_dictionary["RaceDate"]}/{month[relevant_dictionary["Month"]]}/23 {relevant_dictionary["RaceTime"]}:00'
-
-    race_datetime_object = datetime.strptime(datetime_str, '%d/%m/%y %H:%M:%S')
-    race_timezone={
-        'Austria':'Etc/GMT+2',
-        'Bahrain': 'Asia/Bahrain',
-        'Saudi Arabia': 'Etc/GMT+3',
-        'Australia': 'Etc/GMT+3',
-        'Azerbaijan':'Etc/GMT+4',
-        'Italy':'Europe/Rome',
-        'Monaco':'Etc/GMT+2',
-        'Spain':'Etc/GMT+2',
-        'Canada':'America/Montreal',
-        'Great Britain':'Etc/GMT+1',
-        'Hungary':'Etc/GMT+2',
-        'Belgium':'Europe/Brussels',
-        'Netherlands':'Europe/Amsterdam',
-        'Singapore':'Asia/Singapore',
-        'Japan':'Etc/GMT+9',
-        'Qatar':'Etc/GMT+3',
-        'Mexico':'Etc/GMT-6',
-        'Brazil':'Etc/GMT-3',
-        'Abu Dhabi':'Etc/GMT+4',
-    }
-
-    flag = 1
-    if flag == 1:
-        race_timezone["United States"]='Etc/GMT-5'
-        flag = 2
-    elif flag == 2:
-        race_timezone["United States"]='Etc/GMT-7'
-
-    source_time_zone = pytz.timezone(race_timezone[relevant_dictionary["Country"]])
-    print(source_time_zone)
-    print(race_datetime_object)
-    race_datetime_adjusted = source_time_zone.localize(race_datetime_object)
-    print(race_datetime_adjusted)
-    target_time_zone = pytz.timezone('Etc/UTC')
-    racetime_utc= race_datetime_adjusted.astimezone(target_time_zone)
-    print(racetime_utc)
-    return racetime_utc
-    # while(True):
-    #     pass
 
 
+except Exception as e:
+    print(f"An error occurred: {str(e)}")
+
+finally:
+    # Close the WebDriver
+    driver.quit()
