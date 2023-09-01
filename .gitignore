@@ -1,3 +1,5 @@
 env
 chromedriver
 LICENSE.chromedriver
+.DS_Store
+
