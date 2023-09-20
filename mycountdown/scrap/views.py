@@ -35,3 +35,16 @@ def show_countdown(request):
 
 
 
+def show_drivers(request):
+    json_file_path = finders.find('scrap/drivers.json')
+    if json_file_path:
+        with open(json_file_path, 'r') as json_file:
+            drivers = json.load(json_file)
+
+    # Now 'drivers' should be a list of dictionaries
+
+    print(type(drivers))
+    
+    return render(request, 'scrap/driver.html', {'data': drivers})
+
+

@@ -33,7 +33,7 @@ driver.get("https://www.formula1.com/en/racing/2023.html")
 try:
     # Wait for the iframe to appear (change the locator to match your specific iframe)
     iframe = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.XPATH, "//iframe[@id='sp_message_iframe_834700']"))
+        EC.presence_of_element_located((By.XPATH, "//iframe[@title='SP Consent Message']"))
     )
     
     # Switch to the iframe
@@ -80,7 +80,7 @@ try:
     print(data)
 
 # Specify the file path where you want to save the JSON data
-    file_directory = os.getcwd()+'/scrap/static/scrap/'
+    file_directory = os.getcwd()+'/static/scrap/'
     file_path = file_directory+'data.json'
 
 # Write the dictionary to a JSON file
