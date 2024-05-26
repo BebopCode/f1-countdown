@@ -9,4 +9,4 @@ class RaceDataCreateView(generics.ListCreateAPIView):
     serializer_class = RaceModelSerializer
     def get_queryset(self):
         # Sort by the 'race' column and return only the first entry
-        return RaceModel.objects.order_by('race')[:1]
+        return RaceModel.objects.order_by('-race')[:1]
