@@ -1,10 +1,15 @@
 <template>
-    <div>
-      <h1>Countdown</h1>
+    <div class="flex-col">
+      <h1 class="text-2xl reusable-div reusable-text">{{ raceTitle }}</h1>
       <div v-if="loading">Loading...</div>
       <div v-else-if="error">{{ error }}</div>
-      <div v-else>
-        <Countdown :endTime="raceTime" />
+      <div v-else class="container w-full p-4">
+        <Countdown :endTime="raceTime" :title="raceText" />
+        <Countdown :endTime="qualifyingTime" :title="qualifyingText" />
+        <Countdown v-if="isSprintRace" :endTime="sprintTime" :title="sprintText"/>
+        <Countdown v-if="isSprintRace" :endTime="sprintshootoutTime" :title="sprintShootoutText" />
+        
+      
       </div>
     </div>
   </template>
@@ -27,6 +32,10 @@
         loading: true,
         error: null,
         isSprintRace: false,
+        raceText: 'Race Countdown',
+        qualifyingText: 'Qualifying Countdown',
+        sprintText: 'Sprint Countdown',
+        sprintShootoutText: 'Sprint Shootout Countdown'
       };
     },
     methods: {

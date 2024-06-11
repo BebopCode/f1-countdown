@@ -1,7 +1,8 @@
 <!-- Countdown.vue -->
 <template>
-    <div>
-      <p>{{ countdown }}</p>
+    <div class="w-5/12 reusable-div">
+      <h2 class="text-xl md:text-2xl reusable-text">{{ race_text }}</h2>
+      <h2 class="md:text-4xl sm:text-2xl text-1xl reusable-text">{{ countdown }}</h2>
     </div>
   </template>
   
@@ -11,10 +12,15 @@
       endTime: {
         type: Date,
         required: true
+      },
+      title:{
+        type: String,
+        required: true
       }
     },
     data() {
       return {
+        race_text:'',
         countdown: ''
       };
     },
@@ -29,6 +35,7 @@
       updateCountdown() {
         const now = new Date();
         const diff = this.endTime - now;
+        this.race_text = this.title; 
         if (diff > 0) {
           const days = Math.floor(diff / (24 * 1000 * 60 * 60));
           const hours = Math.floor((diff % (24 * 1000 * 60 * 60))/(1000 * 60 * 60));

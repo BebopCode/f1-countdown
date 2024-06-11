@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.reusable-div{
+    @apply  bg-blue-50 m-10 py-10 border-2 border-blue-500 rounded-lg shadow-md shadow-blue-500;
+}
+
+.reusable-text{
+    @apply font-extrabold text-sky-500 tracking-widest text-center;
+}
