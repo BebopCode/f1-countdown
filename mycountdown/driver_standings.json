@@ -1,0 +1,128 @@
+[
+    {
+        "Position": "1",
+        "Driver": "Verstappen",
+        "Car": "RED BULL RACING HONDA RBPT",
+        "Points": "237"
+    },
+    {
+        "Position": "2",
+        "Driver": "Norris",
+        "Car": "MCLAREN MERCEDES",
+        "Points": "156"
+    },
+    {
+        "Position": "3",
+        "Driver": "Leclerc",
+        "Car": "FERRARI",
+        "Points": "150"
+    },
+    {
+        "Position": "4",
+        "Driver": "Sainz",
+        "Car": "FERRARI",
+        "Points": "135"
+    },
+    {
+        "Position": "5",
+        "Driver": "Perez",
+        "Car": "RED BULL RACING HONDA RBPT",
+        "Points": "118"
+    },
+    {
+        "Position": "6",
+        "Driver": "Piastri",
+        "Car": "MCLAREN MERCEDES",
+        "Points": "112"
+    },
+    {
+        "Position": "7",
+        "Driver": "Russell",
+        "Car": "MERCEDES",
+        "Points": "111"
+    },
+    {
+        "Position": "8",
+        "Driver": "Hamilton",
+        "Car": "MERCEDES",
+        "Points": "85"
+    },
+    {
+        "Position": "9",
+        "Driver": "Alonso",
+        "Car": "ASTON MARTIN ARAMCO MERCEDES",
+        "Points": "41"
+    },
+    {
+        "Position": "10",
+        "Driver": "Tsunoda",
+        "Car": "RB HONDA RBPT",
+        "Points": "19"
+    },
+    {
+        "Position": "11",
+        "Driver": "Stroll",
+        "Car": "ASTON MARTIN ARAMCO MERCEDES",
+        "Points": "17"
+    },
+    {
+        "Position": "12",
+        "Driver": "Hulkenberg",
+        "Car": "HAAS FERRARI",
+        "Points": "14"
+    },
+    {
+        "Position": "13",
+        "Driver": "Ricciardo",
+        "Car": "RB HONDA RBPT",
+        "Points": "11"
+    },
+    {
+        "Position": "14",
+        "Driver": "Bearman",
+        "Car": "FERRARI",
+        "Points": "6"
+    },
+    {
+        "Position": "15",
+        "Driver": "Gasly",
+        "Car": "ALPINE RENAULT",
+        "Points": "6"
+    },
+    {
+        "Position": "16",
+        "Driver": "Magnussen",
+        "Car": "HAAS FERRARI",
+        "Points": "5"
+    },
+    {
+        "Position": "17",
+        "Driver": "Ocon",
+        "Car": "ALPINE RENAULT",
+        "Points": "3"
+    },
+    {
+        "Position": "18",
+        "Driver": "Albon",
+        "Car": "WILLIAMS MERCEDES",
+        "Points": "2"
+    },
+    {
+        "Position": "19",
+        "Driver": "Zhou",
+        "Car": "KICK SAUBER FERRARI",
+        "Points": "0"
+    },
+    {
+        "Position": "20",
+        "Driver": "Bottas",
+        "Car": "KICK SAUBER FERRARI",
+        "Points": "0"
+    },
+    {
+        "Position": "21",
+        "Driver": "Sargeant",
+        "Car": "WILLIAMS MERCEDES",
+        "Points": "0"
+    }
+]

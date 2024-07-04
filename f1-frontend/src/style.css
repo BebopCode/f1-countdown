@@ -9,3 +9,8 @@
 .reusable-text{
     @apply font-extrabold text-sky-500 tracking-widest text-center;
 }
+
+body {
+    font-family: "quicksand", sans-serif;
+    font-weight: 300;
+  }

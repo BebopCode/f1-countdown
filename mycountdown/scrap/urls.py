@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import RaceDataCreateView
+from .views import LeaderBoardCreateView,RaceModelCreateView
 
 urlpatterns = [
-    path('race_data/', RaceDataCreateView.as_view(), name='race-data-create'),
+    path('race_data/', RaceModelCreateView.as_view(), name='race-data-create'),
+    path('leaderboard_data/', LeaderBoardCreateView.as_view(), name='leaderboard-data-create'),
 ]

@@ -1,5 +1,5 @@
 <template>
-    <div class="flex">
+    <div class="flex-col">
       <h1 class="text-2xl reusable-div reusable-text">{{ raceTitle }}</h1>
       <div v-if="loading">Loading...</div>
       <div v-else-if="error">{{ error }}</div>
@@ -24,7 +24,7 @@
     },
     data() {
       return {
-        raceTitle: 'Loading....',
+        raceTitle: 'asdasd',
         raceTime: null,
         qualifyingTime: null,
         sprintTime: null,
@@ -43,11 +43,11 @@
         axios.get('http://127.0.0.1:8000/api/race_data/')
           .then(response => {
             const responseData = response.data[0];
-            this.raceTitle = responseData.title ;
+            this.raceTitle = responseData.title;
             this.raceTime = new Date(responseData.race);
             this.qualifyingTime = new Date(responseData.qualifying);
             
-            if (responseData.sprint !== '') {
+            if (responseData.sprint !== null) {
             this.isSprintRace = true;
             this.sprintTime = new Date(response.sprint);
             this.sprintShootoutTime = new Date(response.sprint_shootout);

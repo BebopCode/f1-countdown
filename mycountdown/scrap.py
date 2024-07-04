@@ -33,7 +33,15 @@ def scrape():
 
     driver = webdriver.Chrome()  # Optional argument, if not specified will search path.
     driver.get("https://www.formula1.com/en/racing/2024.html")
-    hero_div = driver.find_element(By.XPATH, '//div[@class="hero-event"]')
+    hero_div = driver.find_element(By.XPATH, '//div[@id="featuredCard"]')
+    # Find the anchor tag within the hero_div
+    link = hero_div.find_element(By.TAG_NAME, 'a')
+
+# Get the href attribute
+    href = link.get_attribute('href')
+
+# Navigate to the new page
+    driver.get(href)
     event_place = hero_div.find_element(By.XPATH, './/div[@class="event-place d-block"]').text
     event_title = hero_div.find_element(By.XPATH, './/div[@class="event-title f1--xxs"]').text
     event_title = event_title.title()
