@@ -2,17 +2,17 @@
 import HelloWorld from './components/HelloWorld.vue'
 </script>
 
-<template>
+<template >
  <nav class="w-full p-4">
   <ul class="flex justify-center">
     <li class="mx-5">
-      <a class="text-blue-500 hover:text-blue-800" href="/">Active</a>
+      <a class="text-purple-500 hover:text-purple-800 selection:underline" href="/">Active</a>
     </li>
     <li class="mx-5">
-      <a class="text-blue-500 hover:text-blue-800" href="/race_countdown">Link</a>
+      <a class="text-purple-500 hover:text-purple-800" href="/race_countdown">Link</a>
     </li>
     <li class="mx-5">
-      <a class="text-blue-500 hover:text-blue-800" href="#">Link</a>
+      <a class="text-purple-500 hover:text-purple-800" href="#">Link</a>
     </li>
   </ul>
 </nav>

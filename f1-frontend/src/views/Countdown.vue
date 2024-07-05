@@ -1,8 +1,8 @@
 <!-- Countdown.vue -->
 <template>
-    <div class="w-5/12 reusable-div">
+    <div class="reusable-div">
       <h2 class="text-xl md:text-2xl reusable-text">{{ race_text }}</h2>
-      <h2 class="md:text-4xl sm:text-2xl text-1xl reusable-text">{{ countdown }}</h2>
+      <h2 class="md:text-3xl sm:text-2xl text-1xl reusable-text">{{ countdown }}</h2>
     </div>
   </template>
   
@@ -41,7 +41,7 @@
           const hours = Math.floor((diff % (24 * 1000 * 60 * 60))/(1000 * 60 * 60));
           const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
           const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-          this.countdown = `${days}:${hours}:${minutes}:${seconds}`;
+          this.countdown = `${days}D:${hours}H:${minutes}M:${seconds}S`;
         } else {
           this.countdown = 'Countdown expired';
           clearInterval(this.interval);

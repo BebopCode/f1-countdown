@@ -1,69 +1,91 @@
 <template>
-    <div class="flex">
-      <h1 class="text-2xl reusable-div reusable-text">{{ raceTitle }}</h1>
-      <div v-if="loading">Loading...</div>
-      <div v-else-if="error">{{ error }}</div>
-      <div v-else class="container w-full p-4">
+  <div class="flex-col">
+    <div class="reusable-div">
+      <img src="@/assets/flag.svg" class="w-1/12 mx-auto" alt="Icon description">
+      <h1 class="text-4xl reusable-text">Upcoming: {{ raceTitle }}</h1>
+      <h1 class="text-2xl reusable-text">{{ raceLocation }}</h1>
+    </div>
+    <div v-if="loading">Loading...</div>
+    <div v-else-if="error">{{ error }}</div>
+    <div v-else class=" w-full p-4 flex">
+      <div class="w-1/2 p-4">
+        <img src="@/assets/car.svg" class="w-1/3 mx-auto" alt="Icon description">     
         <Countdown :endTime="raceTime" :title="raceText" />
         <Countdown :endTime="qualifyingTime" :title="qualifyingText" />
-        <Countdown v-if="isSprintRace" :endTime="sprintTime" :title="sprintText"/>
+        <Countdown v-if="isSprintRace" :endTime="sprintTime" :title="sprintText" />
         <Countdown v-if="isSprintRace" :endTime="sprintshootoutTime" :title="sprintShootoutText" />
-        
-      
+      </div>
+      <div class="w-1/2 pl-4">
+        <LeaderBoardTable :leaderboardData="leaderboardData" />
       </div>
     </div>
-  </template>
-  
-  <script>
-  import axios from 'axios';
-  import Countdown from './Countdown.vue';
+  </div>
+</template>
 
-  export default {
-    components: {
-    Countdown
-    },
-    data() {
-      return {
-        raceTitle: 'Loading....',
-        raceTime: null,
-        qualifyingTime: null,
-        sprintTime: null,
-        sprintShootoutTime: null,
-        loading: true,
-        error: null,
-        isSprintRace: false,
-        raceText: 'Race Countdown',
-        qualifyingText: 'Qualifying Countdown',
-        sprintText: 'Sprint Countdown',
-        sprintShootoutText: 'Sprint Shootout Countdown'
-      };
-    },
-    methods: {
-      fetchRaceData() {
-        axios.get('http://127.0.0.1:8000/api/race_data/')
-          .then(response => {
-            const responseData = response.data[0];
-            this.raceTitle = responseData.title ;
-            this.raceTime = new Date(responseData.race);
-            this.qualifyingTime = new Date(responseData.qualifying);
-            
-            if (responseData.sprint !== '') {
+<script>
+import axios from 'axios';
+import Countdown from './Countdown.vue';
+import LeaderBoardTable from './LeaderBoardTable.vue';
+
+export default {
+  components: {
+    Countdown,
+    LeaderBoardTable
+  },
+  data() {
+    return {
+      raceTitle: 'Loading....',
+      raceLocation: '',
+      raceTime: null,
+      qualifyingTime: null,
+      sprintTime: null,
+      sprintShootoutTime: null,
+      loading: true,
+      error: null,
+      isSprintRace: false,
+      raceText: 'Race Countdown',
+      qualifyingText: 'Qualifying Countdown',
+      sprintText: 'Sprint Countdown',
+      sprintShootoutText: 'Sprint Shootout Countdown',
+      leaderboardData: []
+    };
+  },
+  methods: {
+    fetchRaceData() {
+      axios.get('http://127.0.0.1:8000/api/race_data/')
+        .then(response => {
+          const responseData = response.data[0];
+          this.raceTitle = responseData.title;
+          this.raceLocation = responseData.location;
+          this.raceTime = new Date(responseData.race);
+          this.qualifyingTime = new Date(responseData.qualifying);
+
+          if (responseData.sprint !== '') {
             this.isSprintRace = true;
             this.sprintTime = new Date(response.sprint);
             this.sprintShootoutTime = new Date(response.sprint_shootout);
-            }
-            
-            this.loading = false;
-          })
-          .catch(error => {
-            this.error = 'Failed to load race data: ' + error.message;
-            this.loading = false;
-          });
-      },
+          }
+        })
+        .catch(error => {
+          this.error = 'Failed to load race data: ' + error.message;
+        });
     },
-    created() {
-      this.fetchRaceData();
-
-    },
-  };
-  </script>
+    fetchLeaderBoardData() {
+      axios.get('http://127.0.0.1:8000/api/leaderboard_data/')
+        .then(response => {
+          this.leaderboardData = response.data;
+        })
+        .catch(error => {
+          this.error = 'Failed to load leaderboard data: ' + error.message;
+        });
+    }
+  },
+  created() {
+    this.loading = true;
+    Promise.all([this.fetchRaceData(), this.fetchLeaderBoardData()])
+      .finally(() => {
+        this.loading = false;
+      });
+  },
+};
+</script>

@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 .reusable-div{
-    @apply  bg-blue-50 m-10 py-10 border-2 border-blue-500 rounded-lg shadow-md shadow-blue-500;
+    @apply  bg-purple-500 my-12 py-4 rounded-lg ;
 }
 
 .reusable-text{
-    @apply font-extrabold text-sky-500 tracking-widest text-center;
+    @apply   tracking-widest text-center text-white;
 }
 
 body {
