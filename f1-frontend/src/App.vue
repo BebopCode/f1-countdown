@@ -6,25 +6,25 @@ import HelloWorld from './components/HelloWorld.vue'
  <nav class="w-full p-4">
   <ul class="flex justify-center">
     <li class="mx-5">
-      <a class="text-purple-500 hover:text-purple-800 selection:underline" href="/">Active</a>
+      <a class="text-purple-500 hover:text-purple-800 selection:underline" href="/race_countdown">Countdown</a>
     </li>
     <li class="mx-5">
-      <a class="text-purple-500 hover:text-purple-800" href="/race_countdown">Link</a>
+      <a class="text-purple-500 hover:text-purple-800" href="https://www.formula1.com/en/racing/2024">Official Calender</a>
     </li>
     <li class="mx-5">
-      <a class="text-purple-500 hover:text-purple-800" href="#">Link</a>
+      <a class="text-purple-500 hover:text-purple-800" href="https://github.com/BebopCode/f1-countdown">Github</a>
     </li>
   </ul>
 </nav>
-  <!--<nav class="reusable-div reusable-text">
-    <div class="container mx-auto flex justify-center">
-      <div>
-        <router-link to="/" class="mx-2 hover:text-gray-400">Home</router-link>|
-        <router-link to="/race_countdown" class="mx-2 hover:text-gray-400">Race Countdown</router-link>
-      </div>
-    </div>
-  </nav> -->
   <router-view />
+  <footer class="bg-zinc-50 text-center dark:bg-neutral-700 lg:text-left text-sm">
+  <div class="bg-black/5 p-4 text-center  text-white">
+    This website is unofficial and is not associated in any way with the Formula 1 companies.
+
+F1, FORMULA ONE, FORMULA 1, FIA FORMULA ONE WORLD CHAMPIONSHIP, GRAND PRIX and related marks are trade marks of Formula One Licensing B.V.
+    
+  </div>
+</footer>
 </template>
 
 

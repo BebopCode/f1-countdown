@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-col">
+  <div class>
     <div class="reusable-div">
       <img src="@/assets/flag.svg" class="w-1/12 mx-auto" alt="Icon description">
       <h1 class="text-4xl reusable-text">Upcoming: {{ raceTitle }}</h1>
@@ -7,15 +7,15 @@
     </div>
     <div v-if="loading">Loading...</div>
     <div v-else-if="error">{{ error }}</div>
-    <div v-else class=" w-full p-4 flex">
-      <div class="w-1/2 p-4">
-        <img src="@/assets/car.svg" class="w-1/3 mx-auto" alt="Icon description">     
+    <div v-else class="w-full p-2 flex flex-col sm:flex-row">
+      <div class="sm:w-1/2 w-full p-2">
+        <img src="@/assets/car.svg" class="lg:w-1/4 md:w-1/2 sm:w-5/6 mx-auto" alt="Icon description">
         <Countdown :endTime="raceTime" :title="raceText" />
         <Countdown :endTime="qualifyingTime" :title="qualifyingText" />
         <Countdown v-if="isSprintRace" :endTime="sprintTime" :title="sprintText" />
         <Countdown v-if="isSprintRace" :endTime="sprintshootoutTime" :title="sprintShootoutText" />
       </div>
-      <div class="w-1/2 pl-4">
+      <div class="sm:w-1/2 w-full p-2">
         <LeaderBoardTable :leaderboardData="leaderboardData" />
       </div>
     </div>

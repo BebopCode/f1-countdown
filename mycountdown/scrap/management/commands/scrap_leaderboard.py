@@ -32,9 +32,9 @@ class Command(BaseCommand):
         chrome_options.add_argument("--headless")
         chrome_options.add_argument("--no-sandbox")
         chrome_options.add_argument("--disable-dev-shm-usage")
-        chrome_options.binary_location = "/usr/bin/chromium-browser"
+        #chrome_options.binary_location = "/usr/bin/chromium-browser"
 
-        driver = webdriver.Chrome()  # Optional argument, if not specified will search path.
+        driver = webdriver.Chrome(options = chrome_options)  # Optional argument, if not specified will search path.
         driver.get("https://www.formula1.com/en/results.html/2024/drivers.html")
         tbody = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.TAG_NAME, "tbody"))

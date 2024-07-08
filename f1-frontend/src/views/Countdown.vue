@@ -1,6 +1,6 @@
 <!-- Countdown.vue -->
 <template>
-    <div class="reusable-div">
+    <div class="reusable-div lg:w-2/3 md:w-5/6 mx-auto">
       <h2 class="text-xl md:text-2xl reusable-text">{{ race_text }}</h2>
       <h2 class="md:text-3xl sm:text-2xl text-1xl reusable-text">{{ countdown }}</h2>
     </div>

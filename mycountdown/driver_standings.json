@@ -3,13 +3,13 @@
         "Position": "1",
         "Driver": "Verstappen",
         "Car": "RED BULL RACING HONDA RBPT",
-        "Points": "237"
+        "Points": "255"
     },
     {
         "Position": "2",
         "Driver": "Norris",
         "Car": "MCLAREN MERCEDES",
-        "Points": "156"
+        "Points": "171"
     },
     {
         "Position": "3",
@@ -21,19 +21,19 @@
         "Position": "4",
         "Driver": "Sainz",
         "Car": "FERRARI",
-        "Points": "135"
+        "Points": "146"
     },
     {
         "Position": "5",
-        "Driver": "Perez",
-        "Car": "RED BULL RACING HONDA RBPT",
-        "Points": "118"
+        "Driver": "Piastri",
+        "Car": "MCLAREN MERCEDES",
+        "Points": "124"
     },
     {
         "Position": "6",
-        "Driver": "Piastri",
-        "Car": "MCLAREN MERCEDES",
-        "Points": "112"
+        "Driver": "Perez",
+        "Car": "RED BULL RACING HONDA RBPT",
+        "Points": "118"
     },
     {
         "Position": "7",
@@ -45,31 +45,31 @@
         "Position": "8",
         "Driver": "Hamilton",
         "Car": "MERCEDES",
-        "Points": "85"
+        "Points": "110"
     },
     {
         "Position": "9",
         "Driver": "Alonso",
         "Car": "ASTON MARTIN ARAMCO MERCEDES",
-        "Points": "41"
+        "Points": "45"
     },
     {
         "Position": "10",
-        "Driver": "Tsunoda",
-        "Car": "RB HONDA RBPT",
-        "Points": "19"
+        "Driver": "Stroll",
+        "Car": "ASTON MARTIN ARAMCO MERCEDES",
+        "Points": "23"
     },
     {
         "Position": "11",
-        "Driver": "Stroll",
-        "Car": "ASTON MARTIN ARAMCO MERCEDES",
-        "Points": "17"
+        "Driver": "Hulkenberg",
+        "Car": "HAAS FERRARI",
+        "Points": "22"
     },
     {
         "Position": "12",
-        "Driver": "Hulkenberg",
-        "Car": "HAAS FERRARI",
-        "Points": "14"
+        "Driver": "Tsunoda",
+        "Car": "RB HONDA RBPT",
+        "Points": "20"
     },
     {
         "Position": "13",
@@ -97,15 +97,15 @@
     },
     {
         "Position": "17",
-        "Driver": "Ocon",
-        "Car": "ALPINE RENAULT",
-        "Points": "3"
+        "Driver": "Albon",
+        "Car": "WILLIAMS MERCEDES",
+        "Points": "4"
     },
     {
         "Position": "18",
-        "Driver": "Albon",
-        "Car": "WILLIAMS MERCEDES",
-        "Points": "2"
+        "Driver": "Ocon",
+        "Car": "ALPINE RENAULT",
+        "Points": "3"
     },
     {
         "Position": "19",
@@ -115,14 +115,14 @@
     },
     {
         "Position": "20",
-        "Driver": "Bottas",
-        "Car": "KICK SAUBER FERRARI",
+        "Driver": "Sargeant",
+        "Car": "WILLIAMS MERCEDES",
         "Points": "0"
     },
     {
         "Position": "21",
-        "Driver": "Sargeant",
-        "Car": "WILLIAMS MERCEDES",
+        "Driver": "Bottas",
+        "Car": "KICK SAUBER FERRARI",
         "Points": "0"
     }
 ]

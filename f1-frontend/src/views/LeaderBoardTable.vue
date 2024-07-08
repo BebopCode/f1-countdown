@@ -1,7 +1,7 @@
 <template>
     <div class="relative">
-        <div class="overflow-x-auto overflow-y-auto max-h-[800px] ">
-            <img src="@/assets/trophy.svg" class="w-1/3 my-4 mx-auto" alt="Icon description">  
+        <img src="@/assets/trphy.svg" class="lg:w-1/4 md:w-1/2 sm:w-5/6 w-5/6 mx-auto" alt="Icon description">      
+        <div class="overflow-x-auto overflow-y-auto max-h-[600px] p-3">
             <table class=" text-md text-left rtl:text-right text-purple-100 mx-auto rounded-lg">
                 <thead class="text-lg text-purple-100 bg-purple-700 ">
                     <tr>
