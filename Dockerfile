@@ -17,11 +17,12 @@ WORKDIR /app
 # Copy requirements and install dependencies
 COPY requirements.txt .
 RUN pip install -r requirements.txt
-RUN chmod +x start.sh
-# Copy only the 'myproject' folder
+
+# Copy only the 'mycountdown' folder
 COPY mycountdown/ ./mycountdown/
 COPY mycountdown/.env .
 COPY start.sh .
+RUN chmod +x start.sh
 # Add this line before the CMD instruction
 EXPOSE 8000
 # Run the application
