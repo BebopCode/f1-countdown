@@ -28,4 +28,5 @@ RUN chmod +x start.sh
 # Add this line before the CMD instruction
 EXPOSE 8000
 # Run the application
-CMD ["./start.sh"]
+#CMD ["./start.sh"]
+CMD ["python", "myproject/manage.py", "runserver", "0.0.0.0:8000"]
