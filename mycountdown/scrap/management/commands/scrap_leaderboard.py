@@ -66,7 +66,10 @@ class Command(BaseCommand):
             data.append(row_dict)
 
         # Save the data to a JSON file
-        with open("driver_standings.json", "w") as f:
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        print(current_dir)
+        json_file_path = os.path.join(current_dir, 'driver_standings.json')
+        with open(json_file_path, "w") as f:
             json.dump(data, f, indent=4)
 
         print("Data saved to driver_standings.json")

@@ -19,9 +19,11 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # Copy only the 'mycountdown' folder
-COPY mycountdown/ ./mycountdown/
-COPY mycountdown/.env .
+COPY . .
 COPY start.sh .
+#COPY mycountdown/ ./mycountdown/
+#COPY mycountdown/.env .
+#COPY start.sh .
 RUN chmod +x start.sh
 # Add this line before the CMD instruction
 EXPOSE 8000
