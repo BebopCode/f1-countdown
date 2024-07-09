@@ -52,7 +52,7 @@ export default {
   },
   methods: {
     fetchRaceData() {
-      axios.get('http://127.0.0.1:8000/api/race_data/')
+      axios.get('http://142.93.228.251/api/race_data/')
         .then(response => {
           const responseData = response.data[0];
           this.raceTitle = responseData.title;
@@ -71,7 +71,7 @@ export default {
         });
     },
     fetchLeaderBoardData() {
-      axios.get('http://127.0.0.1:8000/api/leaderboard_data/')
+      axios.get('http://142.93.228.251/api/leaderboard_data/')
         .then(response => {
           this.leaderboardData = response.data;
         })
