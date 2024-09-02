@@ -6,13 +6,13 @@ import HelloWorld from './components/HelloWorld.vue'
  <nav class="w-full p-4">
   <ul class="flex justify-center">
     <li class="mx-5">
-      <a class="text-purple-500 hover:text-purple-800 selection:underline" href="/race_countdown">Countdown</a>
+      <a class="text-slate-500 hover:text-slate-800 selection:underline" href="/">Countdown</a>
     </li>
     <li class="mx-5">
-      <a class="text-purple-500 hover:text-purple-800" href="https://www.formula1.com/en/racing/2024">Official Calender</a>
+      <a class="text-slate-500 hover:text-slate-800" href="https://www.formula1.com/en/racing/2024">Official Calender</a>
     </li>
     <li class="mx-5">
-      <a class="text-purple-500 hover:text-purple-800" href="https://github.com/BebopCode/f1-countdown">Github</a>
+      <a class="text-slate-500 hover:text-slate-800" href="https://github.com/BebopCode/f1-countdown">Github</a>
     </li>
   </ul>
 </nav>

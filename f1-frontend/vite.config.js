@@ -8,6 +8,5 @@ export default defineConfig({
     alias: {
       '@': '/src'
     }
-  },
-  base: '/f1-frontend/',
+  }
 })

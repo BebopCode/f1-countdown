@@ -6,7 +6,7 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home,
+    component: RaceCountdown,
   },
   {
     path: "/race_countdown",
@@ -16,7 +16,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL), // Use process.env.BASE_URL
+  history: createWebHistory(import.meta.env.VITE_BASE_URL), // Use process.env.BASE_URL
   routes,
 });
 

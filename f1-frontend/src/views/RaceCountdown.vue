@@ -17,6 +17,7 @@
       </div>
       <div class="sm:w-1/2 w-full p-2">
         <LeaderBoardTable :leaderboardData="leaderboardData" />
+        <TeamLeaderBoard :teamLeaderboardData="teamLeaderboardData"/>
       </div>
     </div>
   </div>
@@ -26,11 +27,13 @@
 import axios from 'axios';
 import Countdown from './Countdown.vue';
 import LeaderBoardTable from './LeaderBoardTable.vue';
+import TeamLeaderBoard from './TeamLeaderBoard.vue';
 
 export default {
   components: {
     Countdown,
-    LeaderBoardTable
+    LeaderBoardTable,
+    TeamLeaderBoard
   },
   data() {
     return {
@@ -47,12 +50,13 @@ export default {
       qualifyingText: 'Qualifying Countdown',
       sprintText: 'Sprint Countdown',
       sprintShootoutText: 'Sprint Shootout Countdown',
-      leaderboardData: []
+      leaderboardData: [],
+      teamLeaderboardData: []
     };
   },
   methods: {
     fetchRaceData() {
-      axios.get('http://142.93.228.251/api/race_data/')
+      axios.get(import.meta.env.VITE_RACE_DATA_URL)
         .then(response => {
           const responseData = response.data[0];
           this.raceTitle = responseData.title;
@@ -71,18 +75,27 @@ export default {
         });
     },
     fetchLeaderBoardData() {
-      axios.get('http://142.93.228.251/api/leaderboard_data/')
+      axios.get(import.meta.env.VITE_LEADERBOARD_DATA_URL)
         .then(response => {
           this.leaderboardData = response.data;
         })
         .catch(error => {
           this.error = 'Failed to load leaderboard data: ' + error.message;
         });
+    },
+    fetchTeamLeaderBoardData() {
+      axios.get(import.meta.env.VITE_TEAM_LEADERBOARD_DATA_URL)
+        .then(response => {
+          this.teamLeaderboardData = response.data;
+        })
+        .catch(error => {
+          this.error = 'Failed to load  team leaderboard data: ' + error.message;
+        });
     }
   },
   created() {
     this.loading = true;
-    Promise.all([this.fetchRaceData(), this.fetchLeaderBoardData()])
+    Promise.all([this.fetchRaceData(), this.fetchLeaderBoardData(),this.fetchTeamLeaderBoardData()])
       .finally(() => {
         this.loading = false;
       });
