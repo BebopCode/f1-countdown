@@ -17,3 +17,11 @@ class LeaderBoard(models.Model):
     driver = models.CharField(max_length=100)
     car = models.CharField(max_length=100)
     points = models.IntegerField()
+
+class TeamLeaderBoard(models.Model):
+    update_time = models.DateTimeField()
+    position = models.IntegerField()
+    team = models.CharField(max_length=100)
+    points = models.CharField(max_length=100)
+
+

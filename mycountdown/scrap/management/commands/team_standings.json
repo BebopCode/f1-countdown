@@ -1,0 +1,52 @@
+[
+    {
+        "Position": "1",
+        "Team": "Red Bull Racing Honda RBPT",
+        "Points": "446"
+    },
+    {
+        "Position": "2",
+        "Team": "McLaren Mercedes",
+        "Points": "438"
+    },
+    {
+        "Position": "3",
+        "Team": "Ferrari",
+        "Points": "407"
+    },
+    {
+        "Position": "4",
+        "Team": "Mercedes",
+        "Points": "292"
+    },
+    {
+        "Position": "5",
+        "Team": "Aston Martin Aramco Mercedes",
+        "Points": "74"
+    },
+    {
+        "Position": "6",
+        "Team": "RB Honda RBPT",
+        "Points": "34"
+    },
+    {
+        "Position": "7",
+        "Team": "Haas Ferrari",
+        "Points": "28"
+    },
+    {
+        "Position": "8",
+        "Team": "Alpine Renault",
+        "Points": "13"
+    },
+    {
+        "Position": "9",
+        "Team": "Williams Mercedes",
+        "Points": "6"
+    },
+    {
+        "Position": "10",
+        "Team": "Kick Sauber Ferrari",
+        "Points": "0"
+    }
+]

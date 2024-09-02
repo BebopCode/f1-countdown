@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics
-from .models import LeaderBoard, RaceModel
-from .serializers import LeaderBoardSerializer, RaceModelSerializer
+from .models import LeaderBoard, RaceModel, TeamLeaderBoard
+from .serializers import LeaderBoardSerializer, RaceModelSerializer, TeamLeaderBoardSerializer
 from datetime import datetime
 import pytz
 # Create your views here.
@@ -10,6 +10,11 @@ class LeaderBoardCreateView(generics.ListCreateAPIView):
     serializer_class = LeaderBoardSerializer
     def get_queryset(self):
         return LeaderBoard.objects.all()
+
+class TeamLeaderBoardCreateView(generics.ListCreateAPIView):
+    serializer_class = TeamLeaderBoardSerializer
+    def get_queryset(self):
+        return TeamLeaderBoard.objects.all()
     
 class RaceModelCreateView(generics.ListCreateAPIView):
     queryset = RaceModel.objects.all()

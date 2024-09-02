@@ -10,23 +10,11 @@ import os
 import django
 from django.utils import timezone
 import json
-from scrap.models import LeaderBoard
+from scrap.models import TeamLeaderBoard
 from django.core.management.base import BaseCommand
 gmt_offset_str = None
 
 class Command(BaseCommand):
-    def convert_string_to_datetime(self, date_str):
-        naive_datetime = datetime.strptime(date_str, "%Y-%m-%dT%H:%M:%S")
-        sign = 1 if gmt_offset_str[0] == '+' else -1
-        hours_offset = int(gmt_offset_str[1:3])  
-        minutes_offset = int(gmt_offset_str[4:]) 
-
-
-        total_minutes_offset = sign * (hours_offset * 60 + minutes_offset)
-        timezone = pytz.FixedOffset(total_minutes_offset)
-        aware_datetime = timezone.localize(naive_datetime)
-        return aware_datetime
-
     def scrape(self):
         chrome_options = Options()
         chrome_options.add_argument("--headless")
@@ -35,7 +23,7 @@ class Command(BaseCommand):
         #chrome_options.binary_location = "/usr/bin/chromium-browser"
 
         driver = webdriver.Chrome(options = chrome_options)  # Optional argument, if not specified will search path.
-        driver.get("https://www.formula1.com/en/results.html/2024/drivers.html")
+        driver.get("https://www.formula1.com/en/results.html/2024/team.html")
         tbody = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.TAG_NAME, "tbody"))
         )
@@ -57,9 +45,8 @@ class Command(BaseCommand):
             # Create a# dictionary for the row
             row_dict = {
                 "Position": row_data[0],
-                "Driver": row_data[1],
-                "Car": row_data[3],
-                "Points": row_data[4]
+                "Team": row_data[1],
+                "Points": row_data[2]
             }
             
             # Add the row dictionary to the data list
@@ -68,29 +55,26 @@ class Command(BaseCommand):
         # Save the data to a JSON file
         current_dir = os.path.dirname(os.path.abspath(__file__))
         print(current_dir)
-        json_file_path = os.path.join(current_dir, 'driver_standings.json')
+        json_file_path = os.path.join(current_dir, 'team_standings.json')
         with open(json_file_path, "w") as f:
             json.dump(data, f, indent=4)
 
-        print("Data saved to driver_standings.json")
+        print("Data saved to team_standings.json")
         driver.quit()
-        LeaderBoard.objects.all().delete()
-        for driver in data:
-            driver_model_data = LeaderBoard(
+        TeamLeaderBoard.objects.all().delete()
+        for team in data:
+            team_model_data = TeamLeaderBoard(
                 update_time = timezone.now(),
-                position = driver["Position"],
-                driver = driver["Driver"],
-                car = driver["Car"],
-                points = driver["Points"],
+                position = team["Position"],
+                team = team["Team"],
+                points = team["Points"],
                 )
-            driver_model_data.save()
+            team_model_data.save()
 
-        all_race_data = LeaderBoard.objects.all()
-        print(len(all_race_data))
-        
+        all_team_data = TeamLeaderBoard.objects.all()
+        print(all_team_data)
+    
     def handle(self, *args, **options):
         self.scrape()
-'''
-if __name__ =="__main__":
-    scrape()
-'''
+
+    
